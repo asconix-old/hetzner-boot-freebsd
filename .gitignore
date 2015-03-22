@@ -6,3 +6,5 @@ Gemfile.lock
 pkg/*
 .rbenv-vars
 .env
+coverage/*
+
