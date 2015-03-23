@@ -38,7 +38,17 @@ or create a `.env` file in your Ruby project directory and define them there:
 
 ## Example
 
-See `example.rb` file for usage.
+See `example.rb` file for usage. The example requires valid credentials for the Hetzner HTTP API (see the both environment variables `HETZNER_ROBOT_USERNAME` and `HETZNER_ROBOT_PASSWORD` above) as well as a concrete target host to reboot (environment variables `HETZNER_ROBOT_IP_ADDRESS` and `HETZNER_ROBOT_HOSTNAME`). Export them either via your `~/.bash_profile`:
+
+	export HETZNER_ROBOT_IP_ADDRESS="1.2.3.4"
+	export HETZNER_ROBOT_HOSTNAME="freebsd.example com"
+
+... or append them to the `.env` file within your project that will be read by `dotenv`:
+
+	HETZNER_ROBOT_IP_ADDRESS="1.2.3.4"
+	HETZNER_ROBOT_HOSTNAME="freebsd.example com"
+
+Afterwards open a new shell and navigate into your project directory. All 4 environment variables should be now exposed for the example code.
 
 ```ruby
 

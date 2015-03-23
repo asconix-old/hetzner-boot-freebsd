@@ -25,7 +25,6 @@ module Hetzner
           @rescue_os     = 'freebsd'
           @rescue_os_bit = '64'
           @retries       = 0
-          @bootstrap_cmd = ''
           @login         = 'root'
 
           options.each_pair do |k,v|
@@ -117,15 +116,15 @@ module Hetzner
 
         def verify_installation(options = {})
           logger.info "Verifying the installation ...".colorize(:magenta)
-          @login = 'root'
-          remote(password: nil) do |ssh|
-            working_hostname = ssh.exec!("cat /etc/hostname")
-            if @hostname == working_hostname.chomp
-              logger.info "The installation has been successful".colorize(:green)
-            else
-              raise InstallationError, "Hostnames do not match: assumed #{@hostname} but received #{working_hostname}"
-            end
-          end
+          #@login = 'root'
+          #remote(password: nil) do |ssh|
+          #  working_hostname = ssh.exec!("cat /etc/hostname")
+          #  if @hostname == working_hostname.chomp
+          #    logger.info "The installation has been successful".colorize(:green)
+          #  else
+          #    raise InstallationError, "Hostnames do not match: assumed #{@hostname} but received #{working_hostname}"
+          #  end
+          #end
         end
 
         def remove_from_local_known_hosts(options = {})
@@ -180,7 +179,6 @@ module Hetzner
            end
         end
 
-        class NoCloudConfigProvidedError < ArgumentError; end
         class CantActivateRescueSystemError < StandardError; end
         class CantResetSystemError < StandardError; end
         class InstallationError < StandardError; end
